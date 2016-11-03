@@ -1,0 +1,66 @@
+%YAML 1.2
+---
+# config for the logging
+log:
+  version: 1
+  disable_existing_loggers: true
+  # Configuring the default (root) logger
+  root:
+    level: DEBUG
+    handlers: [console, logfile]
+
+  handlers:
+    logfile:
+      class: logging.FileHandler
+      # Filename should always be specified dynamically w/ current timestamp
+      filename: out/crawler.log
+      formatter: verbose
+      level: DEBUG
+      # mode = "w" will make sure a new log file is generated every time
+      mode: w
+      encoding: utf-8
+    console:
+      class: logging.StreamHandler
+      stream: ext://sys.stdout
+      formatter: simple
+      level: DEBUG
+
+  formatters:
+    simple:
+      class: logging.Formatter
+      format: "%(asctime)-8s %(levelname)s: %(message)s"
+      datefmt: "%m%d%Y-%H%M%S"
+    verbose:
+      class: logging.Formatter
+      format: "%(asctime)-8s %(levelname)s > %(message)s"
+      datefmt: "%m/%d/%Y %H:%M:%S"
+
+crawler:
+  # game inventory of each user id, from steam web api
+  path_user_inventory:  'user_inventory_[timestamp].txt'
+  # estimated user counts of each steam game, from steamSpy
+  path_app_user:        'app_user_[timestamp].txt'
+  # app details, from steam web api
+  path_app_info:        'app_info_[timestamp].txt'
+  # app info, from steamSpy
+  path_app_steamspy:    'app_steamspy_[timestamp].txt'
+
+  # base url
+  base_url:             'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/'
+  key:                  'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+  steamspy_url:         'http://steamspy.com/api.php?request=all'
+  steampower_url:       'http://store.steampowered.com/api/appdetails?appids=[app_id]'
+  steamspy_app:         'http://steamspy.com/app/[app_id]'
+  repeat_num:           5
+
+database:
+  path_steam_app_info:  'steam_app_info_[timestamp].csv'
+  path_steam_app_tag:   'steam_app_tag_[timestamp].csv'
+  path_master_app_info: 'master_app_info_[timestamp].csv'
+
+  db_conn:              'mysql+mysqldb://:@127.0.0.1/game_recommendation?charset=utf8mb4'
+
+recommendation:
+  path_recommend_games: 'recommendation_games_[timestamp].[format]'
+  model_feature_num:    5
+  recommend_num:        10
