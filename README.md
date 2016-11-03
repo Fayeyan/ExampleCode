@@ -1,2 +1,2 @@
 # ExampleCode
-This is for Example Code of a game recommendation engin
+This is Example Code for a game recommendation engin.
