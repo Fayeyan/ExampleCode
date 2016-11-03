@@ -8,13 +8,15 @@ usage: run_engine.py [-h] [--config CONFIG] [--output_path OUTPUT_PATH]
 Game Recommendation Engine
 
 positional arguments:
-  input_file            Path to user id file
+
+  input_file                                          Path to user id file
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --config CONFIG, -c CONFIG
-                        Path to config file
-  --output_path OUTPUT_PATH, -o OUTPUT_PATH
-                        Path to output file folder
-  --output_format {json,xml,html}, -f {json,xml,html}
-                        Format of the output file, currently supported: JSON
+
+  -h, --help                                          show this help message and exit
+  
+  --config CONFIG, -c CONFIG                          Path to config file
+  
+  --output_path OUTPUT_PATH, -o OUTPUT_PATH           Path to output file folder
+
+  --output_format {json,xml,html}, -f {json,xml,html} Format of the output file, currently supported: JSON
